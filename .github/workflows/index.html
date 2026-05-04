@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>R & G Food Express</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-brand">R<span>&</span>G <small>Food Express</small></a>
+  <div class="nav-center">
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" id="globalSearch" placeholder="Search for food, sweets, juices..." oninput="globalSearchFn()"/>
+    </div>
+  </div>
+  <div class="nav-right">
+    <a href="menu.html" class="nav-link">Menu</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
+    <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">Cart 🛒</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&q=80" alt="Food" class="hero-bg"/>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🚀 Fast Delivery in 30 mins</div>
+    <h1>Order Your <span>Favorite Food</span><br/>Online</h1>
+    <p>Veg, Non-Veg, Sweets, Juices & Desserts — all in one place</p>
+    <div class="hero-btns">
+      <a href="menu.html" class="btn-primary"><i class="fas fa-utensils"></i> Explore Menu</a>
+      <a href="cart.html" class="btn-outline"><i class="fas fa-shopping-cart"></i> View Cart</a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>500+</strong><span>Menu Items</span></div>
+      <div class="divider"></div>
+      <div><strong>10K+</strong><span>Happy Customers</span></div>
+      <div class="divider"></div>
+      <div><strong>4.8⭐</strong><span>Rating</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories">
+  <div class="container">
+    <div class="section-head">
+      <h2>What Are You Craving?</h2>
+      <p>Pick a category and explore</p>
+    </div>
+    <div class="cat-grid">
+      <a href="menu.html?cat=veg" class="cat-card">
+        <div class="cat-img" style="background:linear-gradient(135deg,#56ab2f,#a8e063)">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&q=80" alt="Veg"/>
+        </div>
+        <h3>🥦 Veg Food</h3>
+        <p>Fresh & healthy</p>
+      </a>
+      <a href="menu.html?cat=nonveg" class="cat-card">
+        <div class="cat-img" style="background:linear-gradient(135deg,#c0392b,#e74c3c)">
+          <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&q=80" alt="Non-Veg"/>
+        </div>
+        <h3>🍗 Non-Veg</h3>
+        <p>Rich & flavorful</p>
+      </a>
+      <a href="menu.html?cat=sweets" class="cat-card">
+        <div class="cat-img" style="background:linear-gradient(135deg,#f7971e,#ffd200)">
+          <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&q=80" alt="Sweets"/>
+        </div>
+        <h3>🧁 Sweets</h3>
+        <p>Milk sweets & bakery</p>
+      </a>
+      <a href="menu.html?cat=juices" class="cat-card">
+        <div class="cat-img" style="background:linear-gradient(135deg,#11998e,#38ef7d)">
+          <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&q=80" alt="Juices"/>
+        </div>
+        <h3>🧃 Juices</h3>
+        <p>Fresh & cool drinks</p>
+      </a>
+      <a href="menu.html?cat=desserts" class="cat-card">
+        <div class="cat-img" style="background:linear-gradient(135deg,#8e2de2,#4a00e0)">
+          <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&q=80" alt="Desserts"/>
+        </div>
+        <h3>🍨 Desserts</h3>
+        <p>Ice creams & more</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR ITEMS -->
+<section class="popular">
+  <div class="container">
+    <div class="section-head">
+      <h2>🔥 Popular Right Now</h2>
+      <p>Most ordered items today</p>
+      <a href="menu.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="items-grid" id="popularGrid"></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us">
+  <div class="container">
+    <div class="section-head"><h2>Why Choose R & G?</h2></div>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon">⚡</div><h3>Super Fast Delivery</h3><p>Hot food at your door in 30 minutes</p></div>
+      <div class="why-card"><div class="why-icon">🌿</div><h3>Fresh Ingredients</h3><p>Sourced fresh daily, cooked with love</p></div>
+      <div class="why-card"><div class="why-icon">💰</div><h3>Best Prices</h3><p>Quality food at affordable prices</p></div>
+      <div class="why-card"><div class="why-icon">📱</div><h3>Easy Ordering</h3><p>Order in seconds via website or WhatsApp</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="container">
+    <div class="section-head"><h2>⭐ Customer Reviews</h2><p>What our customers say</p></div>
+    <div class="reviews-grid">
+      <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p>"Best food delivery in town! The biryani is absolutely amazing and always arrives hot."</p><div class="reviewer"><div class="av">A</div><div><strong>Arjun Reddy</strong><small>Hyderabad</small></div></div></div>
+      <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p>"Love the variety! Ordered sweets for Diwali and everyone loved them. Will order again!"</p><div class="reviewer"><div class="av">S</div><div><strong>Sneha Patel</strong><small>Mumbai</small></div></div></div>
+      <div class="review-card"><div class="stars">⭐⭐⭐⭐⭐</div><p>"Fresh juices every time. The mango juice is to die for. Super fast delivery too!"</p><div class="reviewer"><div class="av">R</div><div><strong>Ravi Kumar</strong><small>Bangalore</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <h3>R<span>&</span>G Food Express</h3>
+      <p>Your one-stop destination for all types of delicious food, delivered fresh to your door.</p>
+      <div class="socials">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="https://wa.me/916301685293" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="cart.html">Cart</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-links">
+      <h4>Categories</h4>
+      <a href="menu.html?cat=veg">Veg Food</a>
+      <a href="menu.html?cat=nonveg">Non-Veg</a>
+      <a href="menu.html?cat=sweets">Sweets</a>
+      <a href="menu.html?cat=juices">Juices</a>
+      <a href="menu.html?cat=desserts">Desserts</a>
+    </div>
+    <div class="footer-links">
+      <h4>Contact</h4>
+      <p><i class="fas fa-phone"></i> +91 63016 85293</p>
+      <p><i class="fas fa-map-marker-alt"></i> Hyderabad, India</p>
+      <a href="https://wa.me/916301685293?text=Hi%20R%26G!%20I%20want%20to%20order%20food" target="_blank" class="wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp Order</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 R & G Food Express. Made with ❤️ in Hyderabad</p>
+    <a href="owner.html" style="color:rgba(255,255,255,.3);font-size:.75rem;margin-top:6px;display:block">🔐 Owner Login</a>
+  </div>
+</footer>
+
+<a href="https://wa.me/916301685293?text=Hi%20R%26G!%20I%20want%20to%20order" target="_blank" class="wa-float"><i class="fab fa-whatsapp"></i></a>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+  renderPopular();
+  updateCartBadge();
+</script>
+</body>
+</html>

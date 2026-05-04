@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart — R & G Food Express</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-brand">R<span>&</span>G <small>Food Express</small></a>
+  <div class="nav-center"></div>
+  <div class="nav-right">
+    <a href="menu.html" class="nav-link">Menu</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <a href="cart.html" class="cart-btn active"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
+    <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a><a href="menu.html">Menu</a>
+    <a href="about.html">About</a><a href="contact.html">Contact</a>
+    <a href="cart.html">Cart 🛒</a>
+  </div>
+</nav>
+
+<div class="page-hero"><h1>🛒 Your Cart</h1><p>Review your items before checkout</p></div>
+
+<section class="cart-page">
+  <div class="container">
+    <div class="cart-layout">
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-summary" id="cartSummary"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal checkout-modal">
+    <button class="modal-close" onclick="closeCheckout()"><i class="fas fa-times"></i></button>
+    <h2>📦 Checkout</h2>
+    <form id="checkoutForm" onsubmit="placeOrder(event)">
+      <div class="form-group">
+        <label><i class="fas fa-user"></i> Full Name</label>
+        <input type="text" id="coName" placeholder="Your name" required/>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-phone"></i> Phone Number</label>
+        <input type="tel" id="coPhone" placeholder="+91 XXXXX XXXXX" required/>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-map-marker-alt"></i> Delivery Address</label>
+        <textarea id="coAddress" rows="3" placeholder="House no, Street, Area, City" required></textarea>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-credit-card"></i> Payment Method</label>
+        <div class="payment-opts">
+          <label class="pay-opt"><input type="radio" name="payment" value="Cash on Delivery" checked/><span>💵 Cash on Delivery</span></label>
+          <label class="pay-opt"><input type="radio" name="payment" value="UPI"/><span>📱 UPI / GPay</span></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-sticky-note"></i> Special Instructions</label>
+        <input type="text" id="coNote" placeholder="Less spicy, extra sauce..."/>
+      </div>
+      <div class="order-total-line" id="coTotal"></div>
+      <button type="submit" class="btn-primary" style="width:100%;margin-top:12px">
+        <i class="fab fa-whatsapp"></i> Confirm & Send Order on WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal success-modal">
+    <div class="success-icon">🎉</div>
+    <h2>Order Placed!</h2>
+    <p id="successMsg"></p>
+    <p class="modal-sub">Expected delivery: <strong>30–45 mins</strong></p>
+    <a id="waFallback" href="#" target="_blank" class="btn-whatsapp-modal"><i class="fab fa-whatsapp"></i> Resend on WhatsApp</a>
+    <button onclick="closeSuccess()" class="btn-primary" style="width:100%;margin-top:10px">Continue Shopping</button>
+  </div>
+</div>
+
+<a href="https://wa.me/916301685293?text=Hi%20R%26G!%20I%20want%20to%20order" target="_blank" class="wa-float"><i class="fab fa-whatsapp"></i></a>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script> updateCartBadge(); renderCart(); </script>
+</body>
+</html>

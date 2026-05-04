@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Owner Dashboard — R & G Food Express</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="owner.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="owner-body">
+
+<!-- LOGIN SCREEN -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">🌶️</div>
+    <h2>R & G Owner Panel</h2>
+    <p>Enter your credentials to continue</p>
+    <div class="form-group">
+      <label><i class="fas fa-user"></i> Username</label>
+      <input type="text" id="loginUser" placeholder="owner"/>
+    </div>
+    <div class="form-group">
+      <label><i class="fas fa-lock"></i> Password</label>
+      <input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter') doLogin()"/>
+    </div>
+    <p class="login-error" id="loginError"></p>
+    <button class="btn-primary" style="width:100%" onclick="doLogin()">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </button>
+    <p class="login-hint">Default: <strong>owner</strong> / <strong>rg2024</strong></p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard" style="display:none">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">🌶️ R&G <span>Owner</span></div>
+    <nav class="sidebar-nav">
+      <a href="#" class="snav active" onclick="showTab('stock',this)"><i class="fas fa-boxes"></i> Stock Manager</a>
+      <a href="#" class="snav" onclick="showTab('add',this)"><i class="fas fa-plus-circle"></i> Add New Item</a>
+      <a href="#" class="snav" onclick="showTab('manage',this)"><i class="fas fa-list"></i> All Items</a>
+      <a href="menu.html" target="_blank" class="snav"><i class="fas fa-eye"></i> View Menu</a>
+    </nav>
+    <button class="logout-btn" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="dash-main">
+
+    <!-- HEADER -->
+    <div class="dash-header">
+      <div>
+        <h1 id="tabTitle">Stock Manager</h1>
+        <p id="tabSub">Toggle item availability for customers</p>
+      </div>
+      <div class="dash-stats">
+        <div class="dstat green"><span id="statAvail">0</span><small>Available</small></div>
+        <div class="dstat red"><span id="statOut">0</span><small>Out of Stock</small></div>
+        <div class="dstat blue"><span id="statTotal">0</span><small>Total Items</small></div>
+        <div class="dstat orange"><span id="statStorage">0%</span><small>Storage Used</small></div>
+      </div>
+    </div>
+
+    <!-- STOCK TAB -->
+    <div class="tab-content active" id="tab-stock">
+      <div class="tab-toolbar">
+        <div class="search-bar owner-search">
+          <i class="fas fa-search"></i>
+          <input type="text" id="stockSearch" placeholder="Search items..." oninput="renderStock()"/>
+        </div>
+        <div class="filter-cats" style="flex-wrap:wrap;gap:8px">
+          <button class="fcat active" onclick="setStockCat(this,'all')">All</button>
+          <button class="fcat" onclick="setStockCat(this,'veg')">🥦 Veg</button>
+          <button class="fcat" onclick="setStockCat(this,'nonveg')">🍗 Non-Veg</button>
+          <button class="fcat" onclick="setStockCat(this,'sweets')">🧁 Sweets</button>
+          <button class="fcat" onclick="setStockCat(this,'juices')">🧃 Juices</button>
+          <button class="fcat" onclick="setStockCat(this,'desserts')">🍨 Desserts</button>
+        </div>
+      </div>
+      <div class="stock-grid" id="stockGrid"></div>
+    </div>
+
+    <!-- ADD ITEM TAB -->
+    <div class="tab-content" id="tab-add">
+      <div class="add-form-wrap">
+        <form class="add-form" onsubmit="addItem(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label><i class="fas fa-utensils"></i> Item Name *</label>
+              <input type="text" id="newName" placeholder="e.g. Pani Puri" required/>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-tag"></i> Category *</label>
+              <select id="newCat" required>
+                <option value="">Select category</option>
+                <option value="veg">🥦 Veg Food</option>
+                <option value="nonveg">🍗 Non-Veg</option>
+                <option value="sweets">🧁 Sweets</option>
+                <option value="juices">🧃 Juices</option>
+                <option value="desserts">🍨 Desserts</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label><i class="fas fa-rupee-sign"></i> Price (₹) *</label>
+              <input type="number" id="newPrice" placeholder="e.g. 120" min="1" required/>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-star"></i> Badge / Tag</label>
+              <select id="newTag">
+                <option value="">None</option>
+                <option value="Best Seller">🔥 Best Seller</option>
+                <option value="Popular">⭐ Popular</option>
+                <option value="Premium">💎 Premium</option>
+                <option value="Healthy">🌿 Healthy</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-align-left"></i> Description *</label>
+            <input type="text" id="newDesc" placeholder="Short description of the item" required/>
+          </div>
+          <div class="form-group">
+            <label><i class="fas fa-image"></i> Upload Image *</label>
+            <div class="upload-area" id="uploadArea" onclick="document.getElementById('newImg').click()">
+              <div class="upload-placeholder" id="uploadPlaceholder">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Click to upload image</p>
+                <small>JPG, PNG supported</small>
+              </div>
+              <img id="imgPreview" class="img-preview" style="display:none"/>
+            </div>
+            <input type="file" id="newImg" accept="image/*" style="display:none" onchange="previewImg(this)"/>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary"><i class="fas fa-plus"></i> Add Item to Menu</button>
+            <button type="button" class="btn-reset" onclick="resetForm()"><i class="fas fa-redo"></i> Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ALL ITEMS TAB -->
+    <div class="tab-content" id="tab-manage">
+      <div class="tab-toolbar">
+        <div class="search-bar owner-search">
+          <i class="fas fa-search"></i>
+          <input type="text" id="manageSearch" placeholder="Search items..." oninput="renderManage()"/>
+        </div>
+      </div>
+      <div class="manage-table-wrap">
+        <table class="manage-table">
+          <thead>
+            <tr>
+              <th>Image</th><th>Name</th><th>Category</th>
+              <th>Price</th><th>Status</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="manageBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal" style="max-width:480px">
+    <button class="modal-close" onclick="closeEdit()"><i class="fas fa-times"></i></button>
+    <h2>✏️ Edit Item</h2>
+    <input type="hidden" id="editId"/>
+    <div class="form-group">
+      <label>Item Name</label>
+      <input type="text" id="editName"/>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Price (₹)</label>
+        <input type="number" id="editPrice"/>
+      </div>
+      <div class="form-group">
+        <label>Tag</label>
+        <select id="editTag">
+          <option value="">None</option>
+          <option value="Best Seller">🔥 Best Seller</option>
+          <option value="Popular">⭐ Popular</option>
+          <option value="Premium">💎 Premium</option>
+          <option value="Healthy">🌿 Healthy</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input type="text" id="editDesc"/>
+    </div>
+    <button class="btn-primary" style="width:100%;margin-top:8px" onclick="saveEdit()">
+      <i class="fas fa-save"></i> Save Changes
+    </button>
+  </div>
+</div>
+
+<!-- DELETE CONFIRM -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal" style="max-width:380px;text-align:center">
+    <div style="font-size:3rem;margin-bottom:12px">🗑️</div>
+    <h2>Delete Item?</h2>
+    <p id="deleteMsg" style="color:#666;margin:10px 0 20px"></p>
+    <div style="display:flex;gap:12px">
+      <button class="btn-reset" style="flex:1" onclick="closeDelete()">Cancel</button>
+      <button class="btn-primary" style="flex:1;background:#e63946" id="confirmDeleteBtn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="owner.js"></script>
+</body>
+</html>

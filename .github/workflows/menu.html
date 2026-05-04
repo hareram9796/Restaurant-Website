@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu — R & G Food Express</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-brand">R<span>&</span>G <small>Food Express</small></a>
+  <div class="nav-center">
+    <div class="search-bar">
+      <i class="fas fa-search"></i>
+      <input type="text" id="globalSearch" placeholder="Search food items..." oninput="filterMenu()"/>
+    </div>
+  </div>
+  <div class="nav-right">
+    <a href="menu.html" class="nav-link active">Menu</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
+    <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">Cart 🛒</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1>Our Menu</h1>
+  <p>Fresh food across all categories</p>
+</div>
+
+<section class="menu-page">
+  <div class="container">
+    <!-- FILTERS -->
+    <div class="filters">
+      <div class="filter-cats">
+        <button class="fcat active" data-cat="all" onclick="setCategory(this,'all')">🍽️ All</button>
+        <button class="fcat" data-cat="veg" onclick="setCategory(this,'veg')">🥦 Veg</button>
+        <button class="fcat" data-cat="nonveg" onclick="setCategory(this,'nonveg')">🍗 Non-Veg</button>
+        <button class="fcat" data-cat="sweets" onclick="setCategory(this,'sweets')">🧁 Sweets</button>
+        <button class="fcat" data-cat="juices" onclick="setCategory(this,'juices')">🧃 Juices</button>
+        <button class="fcat" data-cat="desserts" onclick="setCategory(this,'desserts')">🍨 Desserts</button>
+      </div>
+      <div class="filter-right">
+        <select id="priceFilter" onchange="filterMenu()">
+          <option value="all">All Prices</option>
+          <option value="0-100">Under ₹100</option>
+          <option value="100-200">₹100 – ₹200</option>
+          <option value="200-400">₹200 – ₹400</option>
+          <option value="400+">₹400+</option>
+        </select>
+        <select id="sortFilter" onchange="filterMenu()">
+          <option value="default">Sort By</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Top Rated</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="results-info" id="resultsInfo"></div>
+    <div class="items-grid" id="menuGrid"></div>
+  </div>
+</section>
+
+<a href="https://wa.me/916301685293?text=Hi%20R%26G!%20I%20want%20to%20order" target="_blank" class="wa-float"><i class="fab fa-whatsapp"></i></a>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+  updateCartBadge();
+  // Read URL param
+  const urlCat = new URLSearchParams(window.location.search).get('cat') || 'all';
+  const btn = document.querySelector(`.fcat[data-cat="${urlCat}"]`);
+  if (btn) { document.querySelectorAll('.fcat').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }
+  currentCategory = urlCat;
+  filterMenu();
+</script>
+</body>
+</html>

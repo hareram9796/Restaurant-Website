@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — R & G Food Express</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-brand">R<span>&</span>G <small>Food Express</small></a>
+  <div class="nav-center"></div>
+  <div class="nav-right">
+    <a href="menu.html" class="nav-link">Menu</a>
+    <a href="about.html" class="nav-link active">About</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
+    <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a><a href="menu.html">Menu</a>
+    <a href="about.html">About</a><a href="contact.html">Contact</a>
+    <a href="cart.html">Cart 🛒</a>
+  </div>
+</nav>
+
+<div class="page-hero"><h1>About R & G</h1><p>Our story, our passion</p></div>
+
+<section class="about-page">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-imgs">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="Restaurant" class="about-main-img"/>
+        <div class="about-small-imgs">
+          <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=350&q=80" alt="Chef"/>
+          <img src="https://images.unsplash.com/photo-1506368249639-73a05d6f6488?w=350&q=80" alt="Spices"/>
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="tag">Our Story</span>
+        <h2>Serving Happiness Since 2015</h2>
+        <p>R & G Food Express started as a small home kitchen in Hyderabad with one simple goal — to serve fresh, authentic food to every household. What began as a passion project has grown into a full-scale multi-cuisine food delivery service loved by thousands.</p>
+        <p>We believe every meal should feel like home. That's why we use only the freshest ingredients, traditional recipes, and cook every order with care and love.</p>
+        <div class="about-stats">
+          <div class="stat"><h3>9+</h3><p>Years of Service</p></div>
+          <div class="stat"><h3>500+</h3><p>Menu Items</p></div>
+          <div class="stat"><h3>10K+</h3><p>Happy Customers</p></div>
+          <div class="stat"><h3>4.8⭐</h3><p>Avg Rating</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quality-section">
+      <div class="section-head"><h2>Our Quality Promise</h2></div>
+      <div class="quality-grid">
+        <div class="q-card"><div class="q-icon"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&q=80" alt="Fresh"/></div><h3>🌿 100% Fresh</h3><p>Ingredients sourced fresh every morning from local markets</p></div>
+        <div class="q-card"><div class="q-icon"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&q=80" alt="Hygiene"/></div><h3>🧼 Hygienic Kitchen</h3><p>FSSAI certified kitchen with strict hygiene standards</p></div>
+        <div class="q-card"><div class="q-icon"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&q=80" alt="Taste"/></div><h3>👨‍🍳 Expert Chefs</h3><p>Experienced chefs with 10+ years of culinary expertise</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand"><h3>R<span>&</span>G Food Express</h3><p>Your one-stop destination for all types of delicious food.</p></div>
+    <div class="footer-links"><h4>Quick Links</h4><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    <div class="footer-links"><h4>Contact</h4><p><i class="fas fa-phone"></i> +91 63016 85293</p><a href="https://wa.me/916301685293" target="_blank" class="wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2024 R & G Food Express. Made with ❤️ in Hyderabad</p></div>
+</footer>
+<a href="https://wa.me/916301685293" target="_blank" class="wa-float"><i class="fab fa-whatsapp"></i></a>
+<script src="data.js"></script><script src="app.js"></script><script>updateCartBadge();</script>
+</body>
+</html>

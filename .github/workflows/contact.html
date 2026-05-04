@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — R & G Food Express</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-brand">R<span>&</span>G <small>Food Express</small></a>
+  <div class="nav-center"></div>
+  <div class="nav-right">
+    <a href="menu.html" class="nav-link">Menu</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="contact.html" class="nav-link active">Contact</a>
+    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></a>
+    <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a><a href="menu.html">Menu</a>
+    <a href="about.html">About</a><a href="contact.html">Contact</a>
+    <a href="cart.html">Cart 🛒</a>
+  </div>
+</nav>
+
+<div class="page-hero"><h1>Contact Us</h1><p>We'd love to hear from you</p></div>
+
+<section class="contact-page">
+  <div class="container">
+    <div class="contact-layout">
+      <div class="contact-info-col">
+        <h2>Get In Touch</h2>
+        <div class="c-card"><i class="fas fa-phone"></i><div><h4>Phone</h4><a href="tel:+916301685293">+91 63016 85293</a></div></div>
+        <div class="c-card"><i class="fas fa-map-marker-alt"></i><div><h4>Address</h4><p>R & G Food Express,<br/>Hyderabad, Telangana - 500001</p></div></div>
+        <div class="c-card"><i class="fas fa-clock"></i><div><h4>Hours</h4><p>Mon–Sun: 9:00 AM – 11:00 PM</p></div></div>
+        <div class="c-card"><i class="fab fa-whatsapp"></i><div><h4>WhatsApp Order</h4><a href="https://wa.me/916301685293?text=Hi%20R%26G!%20I%20want%20to%20place%20an%20order" target="_blank" class="wa-btn"><i class="fab fa-whatsapp"></i> Chat Now</a></div></div>
+      </div>
+      <div class="contact-map-col">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243647.3!2d78.2!3d17.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd2c7%3A0xae93b78392bafbc2!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1234567890" width="100%" height="400" style="border:0;border-radius:16px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand"><h3>R<span>&</span>G Food Express</h3><p>Your one-stop destination for all types of delicious food.</p></div>
+    <div class="footer-links"><h4>Quick Links</h4><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    <div class="footer-links"><h4>Contact</h4><p><i class="fas fa-phone"></i> +91 63016 85293</p><a href="https://wa.me/916301685293" target="_blank" class="wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2024 R & G Food Express. Made with ❤️ in Hyderabad</p></div>
+</footer>
+<a href="https://wa.me/916301685293" target="_blank" class="wa-float"><i class="fab fa-whatsapp"></i></a>
+<script src="data.js"></script><script src="app.js"></script><script>updateCartBadge();</script>
+</body>
+</html>
